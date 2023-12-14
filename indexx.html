@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Management Program</title>
+    <link rel="shortcut icon" type="image/png" href="./images/suntech_logo.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap&subset=vietnamese" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/main-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/opening-intro-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/alert-window-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/confirmation-window-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/processing-window-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/minimize-form-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/advance-setting-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/help-setting-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/popup-window-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/select-box-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/switch-notification-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/notification-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/auto-scroll-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/import-students-style.css">
+    <link rel="stylesheet" type="text/css" href="./css/responsive-style.css">
+</head>
+<body>
+    <div class="sidebar">
+	
+        <div class="logo-details">
+         
+          
+            <i class='bx bx-menu' id="btn" ></i>
+            
+            <div class="logo_name">IoT</div>
+            <i class='bx bxl-c-plus-plus icon'></i>	
+            
+        </div>
+        <ul class="nav-list">
+          
+          <li>
+            <a href="#" class="activee"  onclick="openNewIndexx()">
+              <i class='bx bx-grid-alt'></i>
+              <span class="links_name">Dashboard</span>
+            </a>
+             <span class="tooltip">Dashboard</span>
+          </li>
+          <li>
+           <a href="#" onclick="switchPage(event, 'ROOM2')">
+             <i class='bx bx-user' ></i>
+             <span class="links_name">User</span>
+           </a>
+           <span class="tooltip">User</span>
+         </li>
+         <li>
+          <a href="#" onclick="openNewIndex()">
+            <i class='bx bx-chat'></i>
+            <span class="links_name">SECURITY</span>
+          </a>
+          
+          <script>
+            function openNewIndex() {
+              // Thực hiện hành động khi click vào phần tử <a> ở đây
+              // Ví dụ: Mở một file index mới
+              window.open("indexx.html");
+            }
+            function openNewIndexx() {
+              // Thực hiện hành động khi click vào phần tử <a> ở đây
+              // Ví dụ: Mở một file index mới
+              window.open("index.html");
+            }
+          </script>
+           <span class="tooltip">SECURITY</span>
+         </li>
+         <li>
+           <a href="#"onclick="switchPage(event, 'ROOM4')">
+             <i class='bx bx-pie-chart-alt-2' ></i>
+             <span class="links_name">CHECKING</span>
+           </a>
+           <span class="tooltip">CHECKING</span>
+         </li>
+     
+    
+         <li class="profile">
+             <div class="profile-details">
+               <!--<img src="profile.jpg" alt="profileImg">-->
+               <div class="name_job">
+                 <div class="name">HUST</div>
+                 <div class="job">Log Out</div>
+               </div>
+             </div>
+             <i class='bx bx-log-out' id="log_out" ></i>
+         </li>
+        </ul>
+        <script>
+            function switchPage(evt, pageName) {
+                var i, sections, links;
+                sections = document.getElementsByTagName("section");
+                for (i = 0; i < sections.length; i++) {
+                  sections[i].style.display = "none";
+                }
+                links = document.getElementsByClassName("activee");
+                for (i = 0; i < links.length; i++) {
+                  links[i].classList.remove("activee");
+                }
+                var targetSection = document.getElementById(pageName);
+                if (targetSection.style.display !== "flex") {
+                  targetSection.style.display = "flex";
+                  evt.currentTarget.classList.add("active");
+            }
+        }
+          </script>
+      </div>
+      <style>
+        .sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 50px;
+    background: #11101D;
+    padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease;
+  }
+  .sidebar.open{
+    width: 130px;
+    z-index: 999;
+  }
+  .sidebar .logo-details{
+    height: 60px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .sidebar .logo-details .icon{
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  .sidebar .logo-details .logo_name{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.5s ease;
+    margin-left: 30px;
+  
+  }
+  .sidebar.open .logo-details .icon,
+  .sidebar.open .logo-details .logo_name{
+    opacity: 1;
+  }
+  .sidebar .logo-details #btn{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 22px;
+    transition: all 0.4s ease;
+    font-size: 23px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  .sidebar.open .logo-details #btn{
+    text-align: right;
+  }
+  .sidebar i{
+    color: #fff;
+    height: 60px;
+    min-width: 19px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+  }
+  .sidebar .nav-list{
+    margin-top: 20px;
+    height: 100%;
+  }
+  .sidebar li{
+    position: relative;
+    margin: 8px 0;
+    list-style: none;
+  }
+  .sidebar li .tooltip{
+    position: absolute;
+    top: -20px;
+    left: calc(100% + 15px);
+    z-index: 3;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: 0s;
+  }
+  .sidebar li:hover .tooltip{
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .sidebar.open li .tooltip{
+    display: none;
+  }
+  .sidebar input{
+    font-size: 15px;
+    color: #FFF;
+    font-weight: 400;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    width: 27px;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    background: #1d1b31;
+  }
+  .sidebar.open input{
+    padding: 0 20px 0 50px;
+    width: 100%;
+  }
+  .sidebar li a{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    background: #11101D;
+  }
+  .sidebar li a:hover{
+    background: #FFF;
+  }
+  .sidebar li a .links_name{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+    margin-left: 10px;
+  }
+  .sidebar.open li a .links_name{
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sidebar li a:hover .links_name,
+  .sidebar li a:hover i{
+    transition: all 0.5s ease;
+    color: #11101D;
+  }
+  .sidebar li i{
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    border-radius: 12px;
+  }
+  .sidebar li.profile{
+    position: fixed;
+    height: 60px;
+    width: 50px;
+    left: 0;
+    bottom: -8px;
+    padding: 10px 14px;
+    background: #1d1b31;
+    transition: all 0.5s ease;
+    overflow: hidden;
+  }
+  .sidebar.open li.profile{
+    width: 130px;
+  }
+  .sidebar li .profile-details{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .sidebar li img{
+    height: 45px;
+    width: 25px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 10px;
+  }
+  .sidebar li.profile .name,
+  .sidebar li.profile .job{
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .sidebar li.profile .job{
+    font-size: 12px;
+  }
+  .sidebar .profile #log_out{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: #1d1b31;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 0px;
+    transition: all 0.5s ease;
+  }
+  .sidebar.open .profile #log_out{
+    width: 50px;
+    background: none;
+  }
+  .home-section{
+    position: relative;
+    background: #E4E9F7;
+    min-height: 100vh;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+  }
+  .sidebar.open ~ .home-section{
+    left: 250px;
+    width: calc(100% - 250px);
+  }
+  .home-section .text{
+    display: inline-block;
+    color: #11101d;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 18px
+  }
+  @media (max-width: 420px) {
+    .sidebar li .tooltip{
+      display: none;
+    }
+  }
+ 
+      </style>
+    <div class="container">
+        <div class="form-student">
+            <h3>Thông tin sinh viên</h3>
+
+            <label>Họ và Tên:</label>
+            <input type="text" id="txtFullName" tabindex="1">
+            <br>
+
+            <label>Địa chỉ Email:</label>
+            <input type="text" id="txtEmailAddress" tabindex="1">
+            <br>
+
+            <label>Số điện thoại:</label>
+            <input type="text" id="txtPhoneNumber" tabindex="1">
+            <br>
+
+            <label>Quê quán:</label>
+            <input type="text" id="txtHomeTown" tabindex="1">
+            <br>
+
+            <label id="lblGender">Giới tính:</label>
+            <input type="radio" name="gender" id="male" value="1" tabindex="1"> Nam
+            <input type="radio" name="gender" id="female" value="2" tabindex="1"> Nữ
+            <br>
+
+            <label></label>
+            <div id="divErrorInfo"></div>
+
+            <label></label>
+            <button type="button" id="btnSaveStudentInfo" value="add" tabindex="1">Thêm mới</button>
+            <div id="divResetStudentInfo" tabindex="1" title="Click để làm mới toàn bộ phần Thông tin sinh viên">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </div>
+
+            <button type="button" id="btnMinimizeForm" title="Click để ẩn Form Thông tin sinh viên">
+                <i class="fa fa-window-minimize" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="list-student">
+            <h3>Danh sách sinh viên</h3>
+            <div class="advance-setting-container">
+                <div id="divAdvanceSettingIcon">
+                    <div class="menu-bar-item-1"></div>
+                    <div class="menu-bar-item-2"></div>
+                    <div class="menu-bar-item-3"></div>
+                </div>
+
+                <div class="setting-box-container hidden-setting-box-container-2" tabindex="-1">
+                    <div class="setting-box-header"></div>
+
+                    <div class="help-setting-box-container">
+                        <div id="divHelpSettingIcon" title="More Help Actions">
+                            <div class="help-icon-item"></div>
+                            <div class="help-icon-item"></div>
+                            <div class="help-icon-item"></div>
+                        </div>
+
+                        <div class="outer-angle-up-area hidden-angle-up-area"></div>
+                        <div class="inner-angle-up-area hidden-angle-up-area"></div>
+
+                        <div class="help-setting-box hidden-help-setting-box-2">
+                            <ul>
+                                <li id="litResetFilterSearchForm">
+                                    <a href="javascript:void(0);">
+                                        <i class="fa fa-refresh" aria-hidden="true"></i>Làm mới phần Tìm kiếm/Lọc
+                                    </a>
+                                </li>
+                                <li id="litResetWindowPosition">
+                                    <a href="javascript:void(0);">
+                                        <i class="fa fa-arrows-alt" aria-hidden="true"></i>Di chuyển Cửa sổ về vị trí ban đầu
+                                    </a>
+                                </li>
+                                <li id="litHelpFilterSearch">
+                                    <a href="javascript:void(0);">
+                                        <i class="fa fa-search-plus" aria-hidden="true"></i>Hướng dẫn sử dụng Tìm kiếm/Lọc
+                                    </a>
+                                </li>
+                                <li id="litListShortcutKeys">
+                                    <a href="javascript:void(0);">
+                                        <i class="fa fa-list-alt" aria-hidden="true"></i>Liệt kê các Phím tắt được cài đặt
+                                    </a>
+                                </li>
+                                <li id="litIntroduceProduct">
+                                    <a href="javascript:void(0);">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>Giới thiệu thông tin về sản phẩm
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="divOverlayFullScreen" class="hidden-overlay">
+                            <div id="winHelpFilterSearch" class="popup-window hidden-popup-window"></div>
+                            <div id="winListShortcutKeys" class="popup-window hidden-popup-window"></div>
+                            <div id="winIntroduceProduct" class="popup-window hidden-popup-window"></div>
+                        </div>
+                    </div>
+
+                    <div class="setting-box" id="boxFilterSearch">
+                        <form id="frmFilterSearch" action="" method="">
+                            <div class="setting-filter-search">
+                                <input type="text" id="txtKeywordSearch" value="" placeholder="Tìm kiếm theo Họ Tên, Email & Số điện thoại">
+                                <button type="button" id="btnClearText">
+                                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="setting-filter-search">
+                                <div class="setting-gender">
+                                    <select id="selGender">
+                                        <option value="-1" disabled>Lọc theo Giới tính</option>
+                                        <option value="0">Tất cả Nam Nữ</option>
+                                        <option value="1">Sinh viên Nam</option>
+                                        <option value="2">Sinh viên Nữ</option>
+                                    </select>
+                                    <div class="down-arrow">&#9660;</div>
+                                </div>
+                            </div>
+                            <div class="setting-filter-search">
+                                <button type="button" id="btnFilterSearch">
+                                    Tìm kiếm<i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" id="btnDownloadFile">
+                                    Tải xuống<i class="fa fa-download" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="setting-box" id="boxImportSampleData">
+                        <div class="import-setting-box-container">
+                            <button type="button" id="btnImportSampleData">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                Cài đặt dữ liệu mẫu
+                                <span class="down-arrow"></span>
+                            </button>
+                            <div class="import-setting-box hidden-import-setting-box-2">
+                                <ul>
+                                    <li id="litImportThreeNewStudents">
+                                        <a href="javascript:void(0);">
+                                            Danh sách 03 sinh viên mới
+                                        </a>
+                                    </li>
+                                    <li id="litImportFiveNewStudents">
+                                        <a href="javascript:void(0);">
+                                            Danh sách 05 sinh viên mới
+                                        </a>
+                                    </li>
+                                    <li id="litImportTenNewStudents">
+                                        <a href="javascript:void(0);">
+                                            Danh sách 10 sinh viên mới
+                                        </a>
+                                    </li>
+                                    <li id="litImportFifteenNewStudents">
+                                        <a href="javascript:void(0);">
+                                            Danh sách 15 sinh viên mới
+                                        </a>
+                                    </li>
+                                    <li id="litImportTwentyNewStudents">
+                                        <a href="javascript:void(0);">
+                                            Danh sách 20 sinh viên mới
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setting-box" id="boxNotification">
+                        <div class="setting-notification">
+                            <label>Gửi thông báo sau khi Thêm mới</label>
+                            <label class="switch-notification">
+                                <input type="checkbox" id="chkNotificationAdd">
+                                <span class="inner-circle"></span>
+                            </label>
+                        </div>
+                        <div class="setting-notification">
+                            <label>Gửi thông báo sau khi Cập nhật</label>
+                            <label class="switch-notification">
+                                <input type="checkbox" id="chkNotificationUpdate">
+                                <span class="inner-circle"></span>
+                            </label>
+                        </div>
+                        <div class="setting-notification">
+                            <label>Gửi thông báo sau khi Xóa bỏ</label>
+                            <label class="switch-notification">
+                                <input type="checkbox" id="chkNotificationDelete">
+                                <span class="inner-circle"></span>
+                            </label>
+                        </div>
+                        <div class="setting-notification">
+                            <label>Chạy đoạn Giới thiệu mở đầu</label>
+                            <label class="switch-notification">
+                                <input type="checkbox" id="chkOpeningIntroRun">
+                                <span class="inner-circle"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-box-footer"></div>
+                </div>
+            </div>
+            <table id="tblStudentInfoList"></table>
+            <button type="button" id="btnScrollTop" title="Click để trở về đầu trang">
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div>
+            <button type="button" id="btnMaximizeForm" title="Click để hiển thị Form Thông tin sinh viên">
+                <i class="fa fa-window-maximize" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+ 
+
+    <div id="boxAlertContainer" class="hidden-overlay" tabindex="0">
+        <div id="winAlertBeforeChange" class="hidden-window hidden-window-2" tabindex="0"></div>
+    </div>
+
+    <div id="boxConfirmContainer" class="hidden-overlay" tabindex="0">
+        <div id="winConfirmBeforeChange" class="hidden-window hidden-window-2" tabindex="0"></div>
+    </div>
+
+    <div id="boxProcessContainer" class="hidden-overlay" tabindex="0">
+        <div id="winProcessBeforeChange" class="hidden-window hidden-window-2" tabindex="0"></div>
+    </div>
+
+    <div id="divAddNotificationList"></div>
+    <div id="divUpdateNotificationList"></div>
+    <div id="divDeleteNotificationList"></div>
+    <div id="divAlertNotificationList"></div>
+
+    <script src="./js/main-app.js"></script>
+    <script src="./js/opening-intro.js"></script>
+    <script src="./js/synchronize-data.js"></script>
+    <script src="./js/alert-window.js"></script>
+    <script src="./js/confirmation-window.js"></script>
+    <script src="./js/processing-window.js"></script>
+    <script src="./js/validate-form.js"></script>
+    <script src="./js/common-utils.js"></script>
+    <script src="./js/minimize-form.js"></script>
+    <script src="./js/advance-setting.js"></script>
+    <script src="./js/move-window.js"></script>
+    <script src="./js/help-setting.js"></script>
+    <script src="./js/popup-window.js"></script>
+    <script src="./js/notification.js"></script>
+    <script src="./js/auto-scroll.js"></script>
+    <script src="./js/filter-search.js"></script>
+    <script src="./js/download-file.js"></script>
+    <script src="./js/import-students.js"></script>
+    <script src="./js/handle-exception.js"></script>
+</body>
+</html>

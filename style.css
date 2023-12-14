@@ -1,0 +1,939 @@
+@import url('http://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --main-color: #1e1e1e;
+    --color-dark: #1D2231;
+    --text-grey: #8390A2
+}
+
+body {
+
+  box-sizing: border-box;
+
+
+    position: relative;
+
+}
+.container{
+
+    display: flex;
+
+}
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Poppins';
+}
+
+
+.sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 50px;
+    background: #11101D;
+    padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease;
+  }
+  .sidebar.open{
+    width: 130px;
+    z-index: 999;
+  }
+  .sidebar .logo-details{
+    height: 60px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .sidebar .logo-details .icon{
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  .sidebar .logo-details .logo_name{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.5s ease;
+    margin-left: 30px;
+  
+  }
+  .sidebar.open .logo-details .icon,
+  .sidebar.open .logo-details .logo_name{
+    opacity: 1;
+  }
+  .sidebar .logo-details #btn{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 22px;
+    transition: all 0.4s ease;
+    font-size: 23px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  .sidebar.open .logo-details #btn{
+    text-align: right;
+  }
+  .sidebar i{
+    color: #fff;
+    height: 60px;
+    min-width: 19px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+  }
+  .sidebar .nav-list{
+    margin-top: 20px;
+    height: 100%;
+  }
+  .sidebar li{
+    position: relative;
+    margin: 8px 0;
+    list-style: none;
+  }
+  .sidebar li .tooltip{
+    position: absolute;
+    top: -20px;
+    left: calc(100% + 15px);
+    z-index: 3;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: 0s;
+  }
+  .sidebar li:hover .tooltip{
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .sidebar.open li .tooltip{
+    display: none;
+  }
+  .sidebar input{
+    font-size: 15px;
+    color: #FFF;
+    font-weight: 400;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    width: 27px;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    background: #1d1b31;
+  }
+  .sidebar.open input{
+    padding: 0 20px 0 50px;
+    width: 100%;
+  }
+  .sidebar li a{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    background: #11101D;
+  }
+  .sidebar li a:hover{
+    background: #FFF;
+  }
+  .sidebar li a .links_name{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+    margin-left: 10px;
+  }
+  .sidebar.open li a .links_name{
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sidebar li a:hover .links_name,
+  .sidebar li a:hover i{
+    transition: all 0.5s ease;
+    color: #11101D;
+  }
+  .sidebar li i{
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    border-radius: 12px;
+  }
+  .sidebar li.profile{
+    position: fixed;
+    height: 60px;
+    width: 50px;
+    left: 0;
+    bottom: -8px;
+    padding: 10px 14px;
+    background: #1d1b31;
+    transition: all 0.5s ease;
+    overflow: hidden;
+  }
+  .sidebar.open li.profile{
+    width: 130px;
+  }
+  .sidebar li .profile-details{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .sidebar li img{
+    height: 45px;
+    width: 25px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 10px;
+  }
+  .sidebar li.profile .name,
+  .sidebar li.profile .job{
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .sidebar li.profile .job{
+    font-size: 12px;
+  }
+  .sidebar .profile #log_out{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: #1d1b31;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 0px;
+    transition: all 0.5s ease;
+  }
+  .sidebar.open .profile #log_out{
+    width: 50px;
+    background: none;
+  }
+  .home-section{
+    position: relative;
+    background: #E4E9F7;
+    min-height: 100vh;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+  }
+  .sidebar.open ~ .home-section{
+    left: 250px;
+    width: calc(100% - 250px);
+  }
+  .home-section .text{
+    display: inline-block;
+    color: #11101d;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 18px
+  }
+  @media (max-width: 420px) {
+    .sidebar li .tooltip{
+      display: none;
+    }
+  }
+ 
+  
+  .left-content {
+  
+    background-color: #ddedee; /* Màu nền cho nội dung bên trái */
+    width: 66.67%; /* Chiếm 2/3 của không gian */
+  }
+  
+  .right-content {
+   
+    height: 800px;
+    background-color: #f5c7c7; /* Màu nền cho nội dung bên phải */
+    width: 33.33%; /* Chiếm 1/3 của không gian */
+  }
+
+  /* CSS reset */
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html { font-size: 62.5%; }
+
+
+
+/* Typography =======================*/
+
+/* Headings */
+
+/* Main heading for card's front cover */
+.card-front__heading {
+  font-size: 1.5rem;
+  margin-top: .25rem;
+}
+
+/* Main heading for inside page */
+.inside-page__heading { 
+  padding-bottom: 1rem; 
+  width: 100%;
+}
+
+/* Mixed */
+
+/* For both inside page's main heading and 'view me' text on card front cover */
+.inside-page__heading,
+.card-front__text-view {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-top: .2rem;
+}
+
+.inside-page__heading--city,
+.card-front__text-view--city { color: #ff62b2; }
+
+.inside-page__heading--ski,
+.card-front__text-view--ski { color: #2aaac1; }
+
+.inside-page__heading--beach,
+.card-front__text-view--beach { color: #fa7f67; }
+
+.inside-page__heading--camping,
+.card-front__text-view--camping { color: #00b97c; }
+
+/* Front cover */
+
+.card-front__tp { color: #fafbfa; }
+
+/* For pricing text on card front cover */
+.card-front__text-price {
+  font-size: 2rem;
+  margin-top: -.2rem;
+}
+
+/* Back cover */
+
+/* For inside page's body text */
+.inside-page__text {
+  color: #333;
+}
+
+/* Icons ===========================================*/
+
+.card-front__icon {
+  fill: #fafbfa;
+  font-size: 3vw;
+  height: 3.25rem;
+  margin-top: -.5rem;
+  width: 3.25rem;
+}
+
+/* Buttons =================================================*/
+
+.inside-page__btn {
+  background-color: transparent;
+  border: 3px solid;
+  border-radius: .5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  overflow: hidden;
+  padding: .7rem .75rem;
+  position: relative;
+  text-decoration: none;
+  transition: all .3s ease;
+  width: 90%;
+  z-index: 10;
+}
+
+.inside-page__btn::before { 
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scaleY(0);
+  transition: all .3s ease;
+  width: 100%;
+  z-index: -1;
+}
+
+.inside-page__btn--city { 
+  border-color: #ff40a1;
+  color: #ff40a1;
+}
+
+.inside-page__btn--city::before { 
+  background-color: #ff40a1;
+}
+
+.inside-page__btn--ski { 
+  border-color: #279eb2;
+  color: #279eb2;
+}
+
+.inside-page__btn--ski::before { 
+  background-color: #279eb2;
+}
+
+.inside-page__btn--beach { 
+  border-color: #fa7f67;
+  color: #fa7f67;
+}
+
+.inside-page__btn--beach::before { 
+  background-color: #fa7f67;
+}
+
+.inside-page__btn--camping { 
+  border-color: #00b97d;
+  color: #00b97d;
+}
+
+.inside-page__btn--camping::before { 
+  background-color: #00b97d;
+}
+
+.inside-page__btn:hover { 
+  color: #fafbfa;
+}
+
+.inside-page__btn:hover::before { 
+  transform: scaleY(1);
+}
+
+/* Layout Structure=========================================*/
+
+
+
+/* Container to hold all cards in one place */
+.card-area {
+margin-left: 50px;
+align-items: center;
+display: flex;
+
+justify-content: space-evenly;
+padding: 1rem;
+}
+
+/* Card ============================================*/
+
+/* Area to hold an individual card */
+.card-section {
+display: flex;
+height: 100%;
+justify-content: center;
+width: 100%;
+}
+
+/* A container to hold the flip card and the inside page */
+.card {
+  background-color: rgba(0,0,0, .05);
+  box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.5);
+  height: 15rem;
+  position: relative;
+  transition: all 1s ease;
+  width: 15rem;
+}
+
+/* Flip card - covering both the front and inside front page */
+
+/* An outer container to hold the flip card. This excludes the inside page */
+.flip-card {
+  height: 15rem;
+  perspective: 100rem;
+  position: absolute;
+  right: 0;
+  transition: all 1s ease;
+  visibility: hidden;
+  width: 15rem;
+  z-index: 100;
+}
+
+/* The outer container's visibility is set to hidden. This is to make everything within the container NOT set to hidden  */
+/* This is done so content in the inside page can be selected */
+.flip-card > * {
+  visibility: visible;
+}
+
+/* An inner container to hold the flip card. This excludes the inside page */
+.flip-card__container {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transition: all 1s ease;
+  width: 100%;
+}
+
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/* Styling for the front side of the flip card */
+
+/* container for the front side */
+.card-front {
+  background-color: #fafbfa;
+  height: 15rem;
+  width: 15rem;
+}
+
+/* Front side's top section */
+.card-front__tp {
+  align-items: center;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
+  display: flex;
+  flex-direction: column;
+  height: 12rem;
+  justify-content: center;
+  padding: .75rem;
+}
+
+.card-front__tp--city {
+  background: linear-gradient(
+    to bottom,
+    #ff73b9,
+    #ff40a1
+  );
+}
+
+.card-front__tp--ski {
+  background: linear-gradient(
+    to bottom,
+    #47c2d7,
+    #279eb2
+  );
+}
+
+.card-front__tp--beach {
+  background: linear-gradient(
+    to bottom,
+    #fb9b88,
+    #f86647
+  );
+}
+
+.card-front__tp--camping {
+  background: linear-gradient(
+    to bottom,
+    #00db93,
+    #00b97d
+  );
+}
+
+/* Front card's bottom section */
+.card-front__bt {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Styling for the back side of the flip card */
+
+.card-back {
+  background-color: #fafbfa;
+  transform: rotateY(180deg);
+}
+
+/* Specifically targeting the <video> element */
+.video__container {
+  clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%);
+  height: auto;
+  min-height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Inside page */
+
+.inside-page {
+  background-color: #fafbfa;
+  box-shadow: inset 20rem 0px 5rem -2.5rem rgba(0,0,0,0.25);
+  height: 100%;
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  transition: all 1s ease;
+  width: 15rem;
+  z-index: 1;
+}
+
+.inside-page__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center; 
+  width: 100%;
+}
+
+/* Functionality ====================================*/
+
+/* This is to keep the card centered (within its container) when opened */
+.card:hover {
+  box-shadow:
+  -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.75);
+  width: 30rem;
+}
+
+/* When the card is hovered, the flip card container will rotate */
+.card:hover .flip-card__container {
+  transform: rotateY(-180deg);
+}
+
+/* When the card is hovered, the shadow on the inside page will shrink to the left */
+.card:hover .inside-page {
+  box-shadow: inset 1rem 0px 5rem -2.5rem rgba(0,0,0,0.1);
+}
+
+/* Footer ====================================*/
+
+.footer {
+  background-color: #333;
+   margin-top: 3rem;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.footer-text {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* 2222 */
+
+/* toast message */
+#toast {
+  position: fixed;
+  top: 60px;
+  right: 32px;
+  z-index: 9999;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+  min-width: 300px;
+  max-width: 400px;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
+  border-style:solid;
+  /* border-left: 4px solid; */
+  border-radius: 5px;
+  transform: all linear .4s;
+  background-color: #fff;
+}
+@keyframes slideInLeft {
+  from {
+  transform: translateX(calc(100% + 32px));
+  opacity: 0;
+  }
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+
+}
+@keyframes fadeOut {
+  to {
+      opacity: 0;
+  }
+}
+
+.toast + .toast {
+  margin-top: 20px
+}
+
+.toast__icon {
+  font-size: 1.4rem;
+  padding: 0 12px;
+}
+.toast__close{
+  padding: 0 12px;
+  font-size: 1.4rem;
+}
+
+.toast__close:hover{
+cursor: pointer;
+}
+
+.toast__body {
+  flex-grow: 1;
+}
+
+.toast__title {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.toast__msg {
+  color: #888;
+  font-size: 1.2rem;
+}
+
+.toast__close-link {
+  color: #a8a6a6;
+}
+
+.toast--on {
+  border-color: #47d764;
+}
+.toast--on .toast__icon {
+  color: #47d764;
+}
+
+.toast--off {
+  border-color: #ffd15e;
+}
+.toast--off .toast__icon {
+  color: #ffc021;
+}
+/* ///// */
+.righttop{
+  height: 200px;
+  background-color: #47c2d7;
+}
+
+/* //// */
+.recent-grid {
+  width: 400px;
+  margin: 13px auto 0;
+}
+
+.cardd {
+  background: #fff;
+  border-radius: 5px;
+}
+
+.card-header {
+  padding: rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px;
+}
+
+.card-header button {
+  background: var(--main-color);
+  border-radius: 10px;
+  color: #fff;
+  font-size: .8rem;
+  padding: 5px 10px;
+  margin: 2px 10px;
+}
+
+.recent-grid  table {
+  border-collapse: collapse;
+}
+
+.recent-grid thead tr {
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.recent-grid  thead td {
+  font-weight: 700;
+}
+
+.recent-grid  td {
+  padding: .5rem;
+  font-size: .9rem;
+  color: #222;
+}
+
+
+
+.clock {
+  display: none;
+  background-color: #fff;
+  margin-top: 26px;
+  border-radius: 10px;
+  padding-left: 10px;
+  color: var(--text-grey);
+}
+
+.clock #date {
+  font-size: 15px;
+}
+
+.clock #time {
+  font-size: 10px;
+}
+/* ..... */
+.righttop {
+  border: 0 none;
+  position:relative ;
+  background: #86d7af;
+  width: 80vw;
+  max-width: 400px;
+  height: 255px;
+  margin: 1rem auto;
+  box-shadow: 0 0 6px rgba(0,0,0,.4);
+  }
+  .uno video {
+ 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hiển thị video vừa với kích thước của video-container */
+  }
+  article {
+  position: absolute;
+  left: 0;
+  top: 5rem;
+  right: 0;
+  bottom: 0;
+  padding: 1rem 2rem 0;
+  overflow: auto;
+  transition: .7s;
+  transform: scale(0);
+  transform-origin: center right;
+  transition-delay: .1s;
+  }
+  article:before {
+  color: rgba(0,0,0,.2);
+  font-size: 4rem;
+  font-weight: 100;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  }
+  h3 {
+  
+    font-size: 1rem;
+   
+    text-align: center;
+    color: rgba(12, 2, 2, 0.6);
+    }
+  h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(0,0,0,.6);
+  }
+  body > h2 {height: auto;}
+  h2 img {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+
+  }
+  h2 span {
+  font-family: Great Vibes;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 1rem;
+  }
+
+  
+  nav {
+  background: #fff;
+  width: 100%;
+  height: 5rem;
+  box-shadow: 0 0 6px rgba(0,0,0,.4);
+  }
+  nav:after {
+  content:'';
+  width: 25%;
+  height: 5rem;
+  background: #BEE3D1;
+  position: absolute;
+  transition: .5s;
+  }
+  input {
+  display: none;
+  }
+  label {
+  width: 25%;
+  float: left;
+  color: #BEE3D1;
+  text-align: center;
+  cursor: pointer;
+  transition: .5s;
+  z-index: 2;
+  }
+  label:hover {color: #1E6743;}
+  label:before {
+  display: block;
+  font-size: 3rem;
+  line-height: 5rem;
+  z-index: 2;
+  }
+  #profile:checked ~ nav [for='profile'],
+  #settings:checked ~ nav [for='settings'],
+  #posts:checked ~ nav [for='posts'],
+  #books:checked ~ nav [for='books'] {
+  color: #041e11;
+  font-weight: 600;
+  }
+  .tinan{
+    display: none;
+  }
+  
+  #profile:checked ~ nav:after {
+  left: 0;
+  }
+  #settings:checked ~ nav:after {
+  left:25%;
+  border-top: 0 none;
+  }
+  #posts:checked ~ nav:after {
+  left: 50%;
+  }
+  #books:checked ~ nav:after {
+  left: 75%;
+  }
+  
+  #profile:checked ~ .uno,
+  #settings:checked ~ .dos,
+  #posts:checked ~ .tres,
+  #books:checked ~ .cuatro {
+  display: block;
+  transform: scale(1);
+  transition-delay: .5s; 
+  }
+  a {color: rgba(24, 2, 2, 0.4)}
+  a:hover {color: rgba(209, 38, 38, 0.2)}
+
+
+
+  
